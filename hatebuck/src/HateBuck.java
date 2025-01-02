@@ -4,9 +4,9 @@ import java.util.*;
 
 public class HateBuck {
     private List<UsuariRegistrat> _usuarisRegistrats;
-    private List<Moderador> _moderadors;
+    private static List<Moderador> _moderadors;
     static Scanner scanner = new Scanner(System.in);
-    private UsuariRegistrat _user;
+    private static UsuariRegistrat _user;
 
 
     public static void main(String[] args) {
@@ -25,7 +25,8 @@ public class HateBuck {
                     hateBuck.enviarMissatgePriv();
                     break;
                 case 2:
-                    hateBuck.modificarTextUser();
+                    if(hateBuck._user instanceof  Moderador) hateBuck.modificarTextUser();
+                    else System.out.println("Opció vàlida només per moderadors");
                     break;
                 case 3:
                     hateBuck.canviarRelation();
@@ -117,7 +118,7 @@ public class HateBuck {
     }
 
     public void modificarTextUser(){
-        UsuariRegistrat user = seleccionarAdmins();
+        UsuariRegistrat user = seleccionarUsers();
         System.out.println("Missatge a modificar: ");
         String message = scanner.nextLine();
         System.out.println("Escriu el nou text: ");
@@ -165,21 +166,6 @@ public class HateBuck {
         return user;
     }
 
-    public Moderador seleccionarAdmins(){
-        scanner.nextLine();
-        System.out.println("Introduir sobrenom del moderador: ");
-        String nick = scanner.nextLine();
-
-        Moderador mod = existeixMod(nick);
-
-        while (mod == null) {
-            System.out.println("Alerta!! Aquest usuari no existeix o no és moderador");
-            System.out.println("Introduir sobrenom del moderador: ");
-            nick = scanner.nextLine();
-            mod = existeixMod(nick);
-        }
-        return mod;
-    }
 
     public UsuariRegistrat existeixUser(String nick){
         int compt=0;
@@ -192,14 +178,4 @@ public class HateBuck {
         return null;
     }
 
-    public Moderador existeixMod(String nick){
-        int compt=0;
-        while(compt<_moderadors.size()){
-            if(_moderadors.get(compt).compareNickname(nick)){
-                return _moderadors.get(compt);
-            }
-            compt++;
-        }
-        return null;
-    }
 }
