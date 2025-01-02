@@ -4,13 +4,14 @@ import java.util.*;
 
 public class HateBuck {
     private List<UsuariRegistrat> _usuarisRegistrats;
+    private List<Moderador> _moderadors;
     static Scanner scanner = new Scanner(System.in);
     private UsuariRegistrat _user;
 
 
     public static void main(String[] args) {
         HateBuck hateBuck = new HateBuck();
-        hateBuck._usuarisRegistrats = hateBuck.llegirUsuariRegistrats();
+        hateBuck.llegirUsuariRegistrats();
 
         hateBuck.login();
         int option;
@@ -40,8 +41,9 @@ public class HateBuck {
 
     }
 
-    private List<UsuariRegistrat> llegirUsuariRegistrats() {
-        List<UsuariRegistrat> usuaris = new LinkedList<>();
+    private void llegirUsuariRegistrats() {
+        _usuarisRegistrats = new LinkedList<>();
+        _moderadors = new LinkedList<>();
         int comptAtrUsuari = 0;
 
         try (Scanner scanner = new Scanner(new File("hatebuck/dadesInicials/usuaris.txt"))) {
@@ -59,16 +61,19 @@ public class HateBuck {
                         break;
                     case 3:
                         email = scanner.nextLine();
-                        usuaris.add(new UsuariRegistrat(name, nick, pswrd, email));
+                        break;
+                    case 4:
+                        if(scanner.nextLine().equals("ADMIN")) _moderadors.add(new Moderador(name, nick, pswrd, email));
+                        _usuarisRegistrats.add(new UsuariRegistrat(name, nick, pswrd, email));
                         break;
                 }
-                comptAtrUsuari = (comptAtrUsuari == 3) ? 0 : comptAtrUsuari + 1;
+                comptAtrUsuari = (comptAtrUsuari == 4) ? 0 : comptAtrUsuari + 1;
             }
         }
         catch (FileNotFoundException e) {
             System.out.println("Arxiu no trobat: " + e.getMessage());
         }
-        return usuaris;
+
     }
 
     public void login(){
@@ -108,25 +113,22 @@ public class HateBuck {
     }
 
     public void enviarMissatgePriv(){
-
+        UsuariRegistrat user = seleccionarUsers();
     }
 
     public void modificarTextUser(){
+        UsuariRegistrat user = seleccionarAdmins();
+        System.out.println("Missatge a modificar: ");
+        String message = scanner.nextLine();
+        System.out.println("Escriu el nou text: ");
+        String text = scanner.nextLine();
 
+        System.out.println("Missatge actualitzat");
     }
 
     public void canviarRelation(){
-        mostrarUsers();
-        System.out.println("Introduir sobrenom del usuari: ");
-        String nick = scanner.next();
 
-        UsuariRegistrat user = existeixUser(nick);
-        while (user == null) {
-            System.out.println("Alerta!! Aquest usuari no existeix");
-            System.out.println("Introduir sobrenom del usuari: ");
-            nick = scanner.nextLine();
-            user = existeixUser(nick);
-        }
+        UsuariRegistrat user = seleccionarUsers();
         TipusCategoria relation = null;
 
         while (relation == null) {
@@ -137,16 +139,46 @@ public class HateBuck {
             } catch (IllegalArgumentException e) {
                 System.out.println("Relació no válida. (Amic,Conegut,Saludat)");
             }
-            _user.createRelation(user,new TipusRelacio(_user,user,relation));
         }
+        _user.createRelation(user,new TipusRelacio(_user,user,relation));
+        System.out.println("Relació creada correctament");
+
     }
 
-    public void mostrarUsers(){
+    public UsuariRegistrat seleccionarUsers(){
         System.out.println("\n=== Usuaris ===");
         for(int i=0;i<_usuarisRegistrats.size();i++){
             _usuarisRegistrats.get(i).showNickname();
         }
-        System.out.println("===  ===");
+        System.out.println("===  ===");scanner.nextLine();
+
+        System.out.println("Introduir sobrenom del usuari: ");
+        String nick = scanner.nextLine();
+
+        UsuariRegistrat user = existeixUser(nick);
+        while (user == null) {
+            System.out.println("Alerta!! Aquest usuari no existeix");
+            System.out.println("Introduir sobrenom del usuari: ");
+            nick = scanner.nextLine();
+            user = existeixUser(nick);
+        }
+        return user;
+    }
+
+    public Moderador seleccionarAdmins(){
+        scanner.nextLine();
+        System.out.println("Introduir sobrenom del moderador: ");
+        String nick = scanner.nextLine();
+
+        Moderador mod = existeixMod(nick);
+
+        while (mod == null) {
+            System.out.println("Alerta!! Aquest usuari no existeix o no és moderador");
+            System.out.println("Introduir sobrenom del moderador: ");
+            nick = scanner.nextLine();
+            mod = existeixMod(nick);
+        }
+        return mod;
     }
 
     public UsuariRegistrat existeixUser(String nick){
@@ -154,6 +186,17 @@ public class HateBuck {
         while(compt<_usuarisRegistrats.size()){
             if(_usuarisRegistrats.get(compt).compareNickname(nick)){
                 return _usuarisRegistrats.get(compt);
+            }
+            compt++;
+        }
+        return null;
+    }
+
+    public Moderador existeixMod(String nick){
+        int compt=0;
+        while(compt<_moderadors.size()){
+            if(_moderadors.get(compt).compareNickname(nick)){
+                return _moderadors.get(compt);
             }
             compt++;
         }

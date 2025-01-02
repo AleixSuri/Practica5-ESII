@@ -1,3 +1,4 @@
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -16,6 +17,7 @@ public class UsuariRegistrat {
         _nickname = nick;
         _password = pswrd;
         _email = mail;
+        relation = new HashMap<>();
     }
 
     public void showUser() {
