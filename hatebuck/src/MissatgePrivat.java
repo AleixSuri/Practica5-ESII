@@ -1,14 +1,15 @@
-import java.util.*;
-
-public class MissatgePrivat extends Missatge{
+public class MissatgePrivat{
     private boolean _notificar;
+    private Missatge _m;
 
     public MissatgePrivat(boolean notifica) {
+        _m = new Missatge();
         _notificar = notifica;
     }
 
-    public Missatge crearMissatge() {
-        return null;
+
+    public void afegirElement(ElementText elemtxt) {
+       _m.afegirElement(elemtxt);
     }
 
     public boolean comprovarLlistaBloqueig() {
@@ -18,4 +19,5 @@ public class MissatgePrivat extends Missatge{
     public boolean comprovarLlistaPermesos() {
         return false;
     }
+
 }

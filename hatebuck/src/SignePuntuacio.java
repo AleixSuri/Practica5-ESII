@@ -7,6 +7,8 @@ public class SignePuntuacio extends ElementText{
         super();
     }
 
+    public SignePuntuacio(char c) {_valor=c;}
+
     public char obtenirSigne() {
         return _valor;
     }

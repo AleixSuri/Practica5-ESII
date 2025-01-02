@@ -1,16 +1,9 @@
-import java.util.*;
-
 public class Paraula extends ElementText{
-    private ParaulaStrategy _p;
+    private ParaulaStrategy _paraula;
 
-    public Paraula() {
-        super();
-
+    public Paraula(ParaulaStrategy p){
+        _paraula=p;
     }
 
-    public String contingut() {
-        // iterar sobre totes les paraules aleatoriament i retornar una
-
-        return this._p.contingut();
-    }
+    public void contingut() {}
 }

@@ -115,10 +115,51 @@ public class HateBuck {
     public void enviarMissatgePriv(){
         UsuariRegistrat user = seleccionarUsers();
         MissatgePrivat message = new MissatgePrivat(true);
-        System.out.println("Missatge a enviar: ");
-        message.crearMissatge();
-        _user.sendMessage(user,message);
-        user.reciveMessage(_user,message);
+
+        System.out.println("Escriu 'P' per entrar una paraula, 'S' per entrar un símbol o 'EOS' per acabar: ");
+        String opcio = scanner.nextLine();
+        char empty = '0';
+        while(!opcio.equals("EOS")){
+            empty = '1';
+            if(opcio.equals("S")){
+                System.out.println("Signe de puntuació: ");
+                message.afegirElement(new SignePuntuacio(scanner.nextLine().charAt(0)));
+            }
+            else if(opcio.equals("P")){
+                System.out.println("Escriu 'A' per paraula amagada, 'G' per grollera i 'N' per normal i 'P' per prauala");
+                opcio = scanner.nextLine();
+                switch (opcio) {
+                    case "A":
+                        System.out.println("Paraula Amagada: ");
+                        message.afegirElement(new Paraula(new ParaulaAmagada(scanner.nextLine())));
+                        break;
+                    case "G":
+                        System.out.println("Paraula Grollera: ");
+                        message.afegirElement(new Paraula(new ParaulaGrollera(scanner.nextLine())));
+                        break;
+                    case "N":
+                        System.out.println("Paraula Normal: ");
+                        message.afegirElement(new Paraula(new ParaulaNormal(scanner.nextLine())));
+                        break;
+                    case "P":
+                        System.out.println("Paraula Prauala: ");
+                        message.afegirElement(new Paraula(new Prauala(scanner.nextLine())));
+                        break;
+                    default:
+                        System.out.println("Opció no vàlida");
+                        break;
+                }
+            }
+            System.out.println("Escriu 'P' per entrar una paraula, 'S' per entrar un símbol o 'EOS' per acabar: ");
+            opcio = scanner.nextLine();
+        }
+        if(empty=='1') {
+            _user.sendMessage(user, message);
+            user.reciveMessage(_user, message);
+            System.out.println("FI");
+            _user.showMessages(user);
+        }
+        else System.out.println("Missatge en blanc. No s'enviarà res");
     }
 
     public void modificarTextUser(){

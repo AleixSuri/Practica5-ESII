@@ -1,12 +1,12 @@
-import java.util.*;
-
 public class Prauala implements ParaulaStrategy{
+    private String _paraula;
+
+    public Prauala(String s) {
+        _paraula=s;
+    }
+
     @Override
-    public String contingut() {
-        // fer que retorni una prauala
-
-        String s = new String();
-
-        return s;
+    public void contingut() {
+        System.out.println(_paraula);
     }
 }

@@ -1,12 +1,12 @@
-import java.util.*;
-
 public class ParaulaGrollera implements ParaulaStrategy{
+    String _paraula;
+
+    public ParaulaGrollera(String s) {
+        _paraula = s;
+    }
+
     @Override
-    public String contingut() {
-        // fer que retorni una paraulaGrollera
-
-        String s = new String();
-
-        return s;
+    public void contingut() {
+        System.out.println(_paraula);
     }
 }

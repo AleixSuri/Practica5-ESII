@@ -1,5 +1,4 @@
-import java.util.*;
+public interface ParaulaStrategy{
 
-public interface ParaulaStrategy {
-    public String contingut();
+    public void contingut();
 }

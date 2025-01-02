@@ -1,12 +1,14 @@
 import java.util.*;
 
 public class Missatge {
-    public Missatge() {
+    List<ElementText> _elements;
+    static Scanner scanner = new Scanner(System.in);
 
+    public Missatge() {
+        _elements = new LinkedList<>();
     }
 
-    public Missatge crearMissatge() {
-        Missatge m = new Missatge();
-        return m;
+    public void afegirElement(ElementText elemtxt) {
+        _elements.add(elemtxt);
     }
 }

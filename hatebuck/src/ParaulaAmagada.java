@@ -1,12 +1,11 @@
-import java.util.*;
-
 public class ParaulaAmagada implements ParaulaStrategy{
+    String _paraula;
+    public ParaulaAmagada(String s) {
+        _paraula = s;
+    }
+
     @Override
-    public String contingut() {
-        // fer que retorni una paraulaAmagada
-
-        String s = new String();
-
-        return s;
+    public void contingut() {
+        System.out.println(_paraula);
     }
 }

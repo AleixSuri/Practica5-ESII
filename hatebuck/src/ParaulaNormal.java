@@ -1,12 +1,13 @@
-import java.util.*;
-
 public class ParaulaNormal implements ParaulaStrategy{
+    private String _paraula;
+
+    public ParaulaNormal(String s) {
+        _paraula=s;
+    }
+
+
     @Override
-    public String contingut() {
-        // fer que retorni una paraulaNormal
-
-        String s = new String();
-
-        return s;
+    public void contingut() {
+        System.out.println(_paraula);
     }
 }

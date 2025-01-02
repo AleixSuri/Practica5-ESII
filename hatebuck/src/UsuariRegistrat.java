@@ -1,4 +1,5 @@
 import java.util.HashMap;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
@@ -19,6 +20,8 @@ public class UsuariRegistrat {
         _password = pswrd;
         _email = mail;
         relation = new HashMap<>();
+        messagesSend = new HashMap<>();
+        messagesRecived = new HashMap<>();
     }
 
     public void showUser() {
@@ -42,11 +45,22 @@ public class UsuariRegistrat {
     }
 
     public void sendMessage(UsuariRegistrat user, MissatgePrivat message) {
-        messagesSend.get(user).add(message);
+        if (messagesSend.containsKey(user)) {messagesSend.get(user).add(message);}
+        else{
+            List<MissatgePrivat> newList = new LinkedList<>();
+            newList.add(message);
+            messagesSend.put(user, newList);
+        }
     }
 
+
     public void reciveMessage(UsuariRegistrat user, MissatgePrivat message) {
-        messagesRecived.get(user).add(message);
+        if (messagesRecived.containsKey(user)) {messagesRecived.get(user).add(message);}
+        else{
+            List<MissatgePrivat> newList = new LinkedList<>();
+            newList.add(message);
+            messagesRecived.put(user, newList);
+        }
     }
 
     public void showMessages(UsuariRegistrat user) {
