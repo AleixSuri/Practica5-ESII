@@ -5,7 +5,7 @@ public class Paraula extends ElementText{
 
     public Paraula() {
         super();
-        this._p = new ParaulaStrategy();
+
     }
 
     public String contingut() {

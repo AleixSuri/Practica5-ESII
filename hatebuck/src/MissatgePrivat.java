@@ -8,14 +8,14 @@ public class MissatgePrivat extends Missatge{
     }
 
     public Missatge crearMissatge() {
-
+        return null;
     }
 
     public boolean comprovarLlistaBloqueig() {
-
+        return false;
     }
 
     public boolean comprovarLlistaPermesos() {
-
+        return false;
     }
 }

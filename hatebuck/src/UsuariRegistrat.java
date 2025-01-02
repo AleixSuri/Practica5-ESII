@@ -1,5 +1,3 @@
-import sun.plugin2.message.Message;
-
 import java.util.List;
 import java.util.Map;
 
@@ -21,7 +19,7 @@ public class UsuariRegistrat {
     }
 
     public void showUser() {
-        System.out.println("Name: " + _name + "\nNickname: " + _nickname + "Email: " + _email);
+        System.out.println("Name: " + _name + "\nNickname: " + _nickname + "\nEmail: " + _email + "\n");
     }
 
     public boolean comparePassword(String pswrd) {

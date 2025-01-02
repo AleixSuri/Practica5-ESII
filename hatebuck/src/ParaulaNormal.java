@@ -1,6 +1,6 @@
 import java.util.*;
 
-public class ParaulaNormal {
+public class ParaulaNormal implements ParaulaStrategy{
     @Override
     public String contingut() {
         // fer que retorni una paraulaNormal
