@@ -22,16 +22,20 @@ public class UsuariRegistrat {
         System.out.println("Name: " + _name + "\nNickname: " + _nickname + "\nEmail: " + _email + "\n");
     }
 
-    public boolean comparePassword(String pswrd) {
-        return pswrd == _password;
+    public void showNickname() {
+        System.out.println(_nickname);
     }
+
+    public boolean comparePassword(String pswrd) {return pswrd.equals(_password);
+    }
+
+    public boolean compareNickname(String nick) {return _nickname.equals(nick);}
 
     public void createRelation(UsuariRegistrat user, TipusRelacio typeRelation) {
         relation.put(user, typeRelation);
     }
 
-    public TipusRelacio knowRelation(UsuariRegistrat user) {
-        return relation.get(user);
+    public TipusRelacio knowRelation(UsuariRegistrat user) {return relation.get(user);
     }
 
     public void giveMessage(UsuariRegistrat user, MissatgePrivat message) {
