@@ -8,7 +8,8 @@ public class UsuariRegistrat {
     String _password;
     String _email;
     Map<UsuariRegistrat, TipusRelacio> relation;
-    Map<UsuariRegistrat, List<MissatgePrivat>> messages;
+    Map<UsuariRegistrat, List<MissatgePrivat>> messagesSend;
+    Map<UsuariRegistrat, List<MissatgePrivat>> messagesRecived;
     List<Text> publications;
 
 
@@ -40,13 +41,17 @@ public class UsuariRegistrat {
     public TipusRelacio knowRelation(UsuariRegistrat user) {return relation.get(user);
     }
 
-    public void giveMessage(UsuariRegistrat user, MissatgePrivat message) {
-        messages.get(user).add(message);
+    public void sendMessage(UsuariRegistrat user, MissatgePrivat message) {
+        messagesSend.get(user).add(message);
+    }
+
+    public void reciveMessage(UsuariRegistrat user, MissatgePrivat message) {
+        messagesRecived.get(user).add(message);
     }
 
     public void showMessages(UsuariRegistrat user) {
-        for (int i = 0; i < messages.size(); i++) {
-            System.out.println("Missatge " + i + ": " + messages.get(user).get(i) +"\n");
+        for (int i = 0; i < messagesSend.size(); i++) {
+            System.out.println("Missatge " + i + ": " + messagesSend.get(user).get(i) +"\n");
         }
     }
 

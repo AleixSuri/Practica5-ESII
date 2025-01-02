@@ -39,7 +39,6 @@ public class HateBuck {
             option = scanner.nextInt();
         }
         System.out.println("\nSessió tancada correctament.\nFins aviat!");
-
     }
 
     private void llegirUsuariRegistrats() {
@@ -115,6 +114,11 @@ public class HateBuck {
 
     public void enviarMissatgePriv(){
         UsuariRegistrat user = seleccionarUsers();
+        MissatgePrivat message = new MissatgePrivat(true);
+        System.out.println("Missatge a enviar: ");
+        message.crearMissatge();
+        _user.sendMessage(user,message);
+        user.reciveMessage(_user,message);
     }
 
     public void modificarTextUser(){
@@ -123,7 +127,7 @@ public class HateBuck {
         String message = scanner.nextLine();
         System.out.println("Escriu el nou text: ");
         String text = scanner.nextLine();
-
+//fer
         System.out.println("Missatge actualitzat");
     }
 
@@ -165,7 +169,6 @@ public class HateBuck {
         }
         return user;
     }
-
 
     public UsuariRegistrat existeixUser(String nick){
         int compt=0;
