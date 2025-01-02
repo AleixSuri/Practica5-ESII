@@ -41,8 +41,6 @@ public class UsuariRegistrat {
         relation.put(user, typeRelation);
     }
 
-    public TipusRelacio knowRelation(UsuariRegistrat user) {return relation.get(user);
-    }
 
     public void sendMessage(UsuariRegistrat user, MissatgePrivat message) {
         if (messagesSend.containsKey(user)) {messagesSend.get(user).add(message);}
@@ -52,7 +50,6 @@ public class UsuariRegistrat {
             messagesSend.put(user, newList);
         }
     }
-
 
     public void reciveMessage(UsuariRegistrat user, MissatgePrivat message) {
         if (messagesRecived.containsKey(user)) {messagesRecived.get(user).add(message);}
@@ -65,7 +62,9 @@ public class UsuariRegistrat {
 
     public void showMessages(UsuariRegistrat user) {
         for (int i = 0; i < messagesSend.size(); i++) {
-            System.out.println("Missatge " + i + ": " + messagesSend.get(user).get(i) +"\n");
+            System.out.print("Missatge " + i + ": ");
+            messagesSend.get(user).get(i).show();
+            System.out.println("\n");
         }
     }
 

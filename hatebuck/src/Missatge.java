@@ -11,4 +11,10 @@ public class Missatge {
     public void afegirElement(ElementText elemtxt) {
         _elements.add(elemtxt);
     }
+
+    public void show(){
+        for(int i=0;i<_elements.size();i++){
+            _elements.get(i).contingut();
+        }
+    }
 }

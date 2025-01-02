@@ -8,6 +8,6 @@ public class ParaulaNormal implements ParaulaStrategy{
 
     @Override
     public void contingut() {
-        System.out.println(_paraula);
+        System.out.print(_paraula);
     }
 }

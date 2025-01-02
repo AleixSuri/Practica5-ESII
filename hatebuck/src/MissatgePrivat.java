@@ -20,4 +20,5 @@ public class MissatgePrivat{
         return false;
     }
 
+    public void show(){_m.show();}
 }

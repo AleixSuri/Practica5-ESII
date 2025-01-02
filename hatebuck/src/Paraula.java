@@ -5,5 +5,7 @@ public class Paraula extends ElementText{
         _paraula=p;
     }
 
-    public void contingut() {}
+    public void contingut() {
+        _paraula.contingut();
+    }
 }

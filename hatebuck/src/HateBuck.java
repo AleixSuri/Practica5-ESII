@@ -156,7 +156,6 @@ public class HateBuck {
         if(empty=='1') {
             _user.sendMessage(user, message);
             user.reciveMessage(_user, message);
-            System.out.println("FI");
             _user.showMessages(user);
         }
         else System.out.println("Missatge en blanc. No s'enviarà res");
